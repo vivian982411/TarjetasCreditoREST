@@ -5,6 +5,7 @@ import com.ibm.academia.apirest.TarjetasCreditoREST.enums.Passion;
 import com.ibm.academia.apirest.TarjetasCreditoREST.repositories.TarjetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TarjetaDAOImpl extends GenericoDAOImpl<Tarjeta,TarjetaRepository> implements TarjetaDAO {
@@ -15,6 +16,7 @@ public class TarjetaDAOImpl extends GenericoDAOImpl<Tarjeta,TarjetaRepository> i
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Iterable<Tarjeta> encontrarTarjetas(Passion passion, Double salario, Integer edad) {
         return repository.encontrarTarjetas(passion,salario,edad);
     }
