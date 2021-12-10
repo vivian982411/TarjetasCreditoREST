@@ -21,7 +21,7 @@ public class PerfilDTO {
     @Positive
     private Double salary;
     @Positive
-    @Min(5)
+    @Min(18)
     @Max(75)
     private Integer age;
 }

@@ -23,12 +23,14 @@ public class CardController {
     @Autowired
     private TarjetaDAO tarjetaDAO;
 
-    /*
-     * Endpoint para encontrar las tarjetas de credito que más se adecuen al perfil de una persona
-     * @param passion Pasion de la persona solicitante
-     * @param salary Salario mensual de la persona solicitante
-     * @param age Edad de la persona solicitante
-     * @return Array con las tarjetas que la persona pueda solicitar
+    /**
+     *  Endpoint para encontrar las tarjetas de credito que más se adecuen al perfil de una persona
+     * @param perfilDTO datos del usuario que se van a evaluar
+     * @param result
+     * @return Listado de Tarjetas que el usuario puede obtener
+     * @BadRequest cuando se los datos ingresados no son validos
+     * @NotFoundException si no se encuentran tarjetas que se adecuen a este perfil
+     * @author Vivian Juarez 10/12/2021
      */
     @PostMapping("/findCard")
     public ResponseEntity<?> findCard(@RequestBody PerfilDTO perfilDTO, BindingResult result){
