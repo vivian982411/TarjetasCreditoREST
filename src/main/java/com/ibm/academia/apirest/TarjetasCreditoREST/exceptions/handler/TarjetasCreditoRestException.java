@@ -11,17 +11,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ControllerAdvice
-public class TarjetasCreditoRestException {
-    @ExceptionHandler(value = BadRequestException.class)
-    public ResponseEntity<Object> formatoInvalidoException(BadRequestException exception){
-        Map<String,Object> respuesta = new HashMap<>();
-        respuesta.put("error",exception.getMessage());
-        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
-    }
+public class TarjetasCreditoRESTException {
     @ExceptionHandler(value = NotFoundException.class)
-    public ResponseEntity<Object> noExisteException(BadRequestException exception){
-        Map<String,Object> respuesta = new HashMap<>();
+    public ResponseEntity<?> noExisteException(NotFoundException exception){
+        Map<String,Object> respuesta=new HashMap<>();
         respuesta.put("error",exception.getMessage());
         return new ResponseEntity<>(respuesta, HttpStatus.NOT_FOUND);
+
+    }
+    @ExceptionHandler(value = BadRequestException.class)
+    public ResponseEntity<?> malFormedException(BadRequestException exception){
+        Map<String,Object> respuesta=new HashMap<>();
+        respuesta.put("error",exception.getMessage());
+        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+
     }
 }
